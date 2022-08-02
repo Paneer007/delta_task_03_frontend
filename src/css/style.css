@@ -1,4 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Quicksand:wght@300;400;500;600;700&family=Roboto&display=swap");
+@-webkit-keyframes colorSwitch {
+  from {
+    color: #fefae0;
+    background-color: #283618;
+  }
+  to {
+    color: #283618;
+    background-color: #fefae0;
+  }
+}
+@keyframes colorSwitch {
+  from {
+    color: #fefae0;
+    background-color: #283618;
+  }
+  to {
+    color: #283618;
+    background-color: #fefae0;
+  }
+}
 #root {
   font-family: "Montserrat";
   height: auto;
@@ -23,29 +43,48 @@ html {
   height: 100vh;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   background-color: #dda15e;
 }
 
-.HomePageFirstHalf, .HomePageSecondHalf {
-  flex-basis: 50%;
-}
-
 .HomeCard {
+  height: 50vh;
+  width: 50vh;
   background-color: #fefae0;
   border: 1px solid black;
-  box-shadow: 8px 12px black;
+  box-shadow: 8px 12px #283618;
   padding: 0px 8px 8px 8px;
 }
 
 .MainTitle {
   font-weight: 800;
   font-size: larger;
+  padding-left: 16px;
 }
 
 .InputField {
   display: flex;
   flex-direction: row;
+  width: 90%;
+}
+.InputField input {
+  font-family: quicksand;
+  border-radius: 4px;
+  border-style: none;
+  width: 100%;
+  outline: none;
+  font-size: large;
+  padding: 8px;
+  margin: 2px;
+  box-shadow: 2px 1px 1px #a2a2a2;
+}
+
+.inputItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .homePageImageStyle {
@@ -63,16 +102,22 @@ html {
   gap: 10px;
 }
 
-.ProfileCard {
-  background-color: #fefae0;
-  padding: 8px;
-  border: 2px solid black;
-  border-radius: 8px;
+.PCText {
+  text-decoration: none;
+  color: #283618;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 25vh;
 }
 
-.ProfileCard :hover {
-  height: 25%;
-  width: 20%;
+.ProfileCard {
+  width: 15vw;
+  height: 30vh;
+  background-color: rgb(244, 231, 178);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 2px 1px 1px #a2a2a2;
 }
 
 .invisibleClass {
@@ -95,4 +140,182 @@ html {
 }
 .inputBox input {
   background-color: #bc6c25;
+}
+
+.SubmitOrChangeField {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.SubmitOrChangeField button {
+  font-family: quicksand;
+  border-radius: 4px;
+  border-style: none;
+  width: 90%;
+  outline: none;
+  font-size: large;
+  padding: 8px;
+  margin: 2px;
+  background-color: #283618;
+  color: cornsilk;
+  box-shadow: 2px 1px 1px #a2a2a2;
+}
+.SubmitOrChangeField button:hover {
+  -webkit-animation: 0.5s colorSwitch alternate both;
+          animation: 0.5s colorSwitch alternate both;
+}
+
+.userHomePageIdea {
+  display: flex;
+  flex-direction: row;
+  min-height: 100%;
+  height: auto;
+}
+
+.SideBar {
+  flex: 0 0 200px;
+  background-color: #dda15e;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 25px;
+}
+
+.SideBarContent {
+  display: flex;
+  flex-direction: column;
+  margin: 80px 8px;
+  width: 80%;
+}
+
+.MainContentPage {
+  background-color: #fefae0;
+  width: 100%;
+}
+
+.UserHomePageContent {
+  padding: 8px;
+}
+
+.hiddenDropDown {
+  display: none;
+}
+
+.dropDownStyling {
+  background-color: rgb(244, 231, 178);
+  box-shadow: 4px 4px 2px #a2a2a2;
+  border-radius: 8px;
+  padding: 1px 8px;
+}
+
+.TitleDescriptionHomePage {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.editProfileButton {
+  text-decoration: none;
+  color: #fefae0;
+  background-color: #283618;
+  box-shadow: 2px 2px 1px #a2a2a2;
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.editProfileButton:hover {
+  background-color: #fefae0;
+  color: #283618;
+}
+
+.subtableContent {
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.ProfileAndDeleteStuff {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding: 4px;
+}
+
+.deleteButton {
+  outline: none;
+  background-color: #fefae0;
+  border: red 1px solid;
+  color: red;
+  font-family: montserrat;
+  font-size: medium;
+  border-radius: 16px;
+}
+
+.deleteButton:hover {
+  color: #fefae0;
+  background-color: red;
+}
+
+.dropDownBigDiv {
+  margin-bottom: 16px;
+}
+
+.SideBarElement {
+  text-align: center;
+  text-decoration: none;
+  font-family: quicksand;
+  border-radius: 16px;
+  border-style: none;
+  outline: none;
+  width: 100%;
+  font-size: large;
+  padding: 8px;
+  margin: 2px;
+  background-color: #283618;
+  color: cornsilk;
+  box-shadow: 2px 1px 1px #a2a2a2;
+}
+
+.UserSearchPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.SearchBarStyling {
+  font-size: large;
+  font-family: quicksand;
+  outline: none;
+  border: none;
+}
+
+.SearchBarDiv {
+  box-shadow: 2px 1px 1px #a2a2a2;
+  padding: 6px;
+  width: 90%;
+  display: flex;
+  margin: 8px;
+  margin-top: 16px;
+  border-radius: 16px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  gap: 8px;
+}
+.SearchBarDiv input {
+  width: 100%;
+}
+
+.ShowMoreText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=style.css.map */

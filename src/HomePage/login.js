@@ -16,32 +16,31 @@ const LoginPage=()=>{
         let token = resp.data.token
         window.localStorage.setItem('token','bearer '+token)
         navigate('../user')
-    }
+    } 
     return(
         <div className="MainCredentials">
             <div className="HomePageFirstHalf">
                 <div className="HomeCard">
                     <div className="MainTitle" id="Header" >
-                        <p>Digi Slam book</p>
-                    </div>
-                    <div>
-                        <div className="InputField">
-                            <p>Email:</p>
-                            <input onChange={(e)=>{setEmail(e.target.value)}}/>
-                        </div>
-                        <div className="InputField">
-                            <p>Password</p>
-                            <input onChange={(e)=>setPassword(e.target.value)}/>
+                        <h2>Digi Slam book</h2>
+                        <div>
+                            <p>Login</p>
                         </div>
                     </div>
-                    <div>
+                    
+                    <div className="inputItems">
+                        <div className="InputField">
+                            <input onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email"/>
+                        </div>
+                        <div className="InputField">
+                            <input onChange={(e)=>setPassword(e.target.value)} placeholder="Password"/>
+                        </div>
+                    </div>
+                    <div className="SubmitOrChangeField">
                         <button className="SubmitButton" onClick={sendResponse}>Login</button>
-                        <Link to="/" className="AltLogin">Don't have an account? sign up</Link>    
+                        <p>Don't have an account?<Link to="/"><span>Sign up</span></Link></p>    
                     </div>    
                 </div>
-            </div>
-            <div className="HomePageSecondHalf">
-                <img className="homePageImageStyle" src={HomePageImage}/>
             </div>
         </div>
     )

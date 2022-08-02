@@ -57,13 +57,14 @@ const MainUserPage = ()=>{
         )
     }
     return(
-        <div>
-            <p>Home page</p>
-            <div>
-                Side Bar
-                <Link to="./">About me</Link>
-                <Link to="./userlist">Explore</Link>
+        <div className="userHomePageIdea">
+            <div className="SideBar">
+                <div className="SideBarContent">
+                    <Link className="SideBarElement" to="./">About me</Link>
+                    <Link className="SideBarElement" to="./userlist">Explore</Link>
+                </div>        
             </div>
+            <div className="MainContentPage">
                 <Routes>
                     <Route path="/" element={<DefaultHomePage userData={userData}/>}/>
                     <Route path="/newuser" element={<NewUserHomePage userData={userData} setNewUserUpdated={setNewUserUpdated}/>}/>
@@ -71,6 +72,8 @@ const MainUserPage = ()=>{
                     <Route path="/userlist/:userId" element ={<UserDisplayPage/>}/>
                     <Route path="/editPage" element ={<EditUserPage userData={userData} setNewUserUpdated={setNewUserUpdated}/>}/>
                 </Routes>
+            </div>
+            
         </div>
     )
 }

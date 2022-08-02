@@ -5,26 +5,29 @@ const greetingLogic =()=>{
     let date = new Date()
     let hour = date.getHours()
     if(hour<12){
-        return "Good morning"
+        return "Good Morning"
     }else if(hour===12){
-        return "Good noon"
+        return "Good Noon"
     }else if (hour <18){
         return "Good Afternoon"
     }else{
         return "Good Evening"
     }
 }
-const CommentData=({commentDetails})=>{
-    //fix this bit
-    console.log(commentDetails)
+const CommentByData =({commentDetails})=>{
     const [who,setWho] = useState('')
     const [buffer,setBuffer]= useState(true)
     useEffect(()=>{
         const getSenderData = async()=>{
-            const token = window.localStorage.getItem('token')
-            const resp = await axios.get(`http://localhost:3001/api/userdata/${commentDetails.From}`,{headers:{'authorization':token,'content-type':'application/json'}})
-            setWho(resp.data)
-            setBuffer(false)
+            try{
+                const token = window.localStorage.getItem('token')
+                const resp = await axios.get(`http://localhost:3001/api/userdata/${commentDetails.To}`,{headers:{'authorization':token,'content-type':'application/json'}})
+                setWho(resp.data)
+                setBuffer(false)
+            }catch(e){
+                console.log(e)
+            }
+            
         }
         getSenderData()
     },[])
@@ -42,61 +45,121 @@ const CommentData=({commentDetails})=>{
         )
     }
     return(
-        <div>
-            <p>From-{who.Name}</p>
+        <div className="dropDownStyling">
+            <p><span className="subtableContent">To:</span> {who.Name}</p>
             <div>
-                <p>Favorite Day</p>
-                <p>{commentDetails.Day}</p>
+                <p><span className="subtableContent">Favorite Day:</span> {commentDetails.Day}</p>
             </div>
             <div>
-                <p>One word to describe me</p>
-                <p>{commentDetails.Describe}</p>
+                <p><span className="subtableContent">One word to describe me:</span> {commentDetails.Describe}</p>
             </div>
             <div>
-                <p>Favorite Quality about me</p>
-                <p>{commentDetails.Quality}</p>
+                <p><span className="subtableContent">Favorite Quality about me:</span> {commentDetails.Quality}</p>
             </div>
             <div>
-                <p>Favorite thing about me</p>
-                <p>{commentDetails.Thing}</p>
+                <p><span className="subtableContent">Favorite thing about me:</span> {commentDetails.Thing}</p>
             </div>
-            <Link to={`./userlist/${who._id}`}>Link To profile</Link>
-            <button onClick={deleteComment}>Delete comment</button>
+            <div className="ProfileAndDeleteStuff">
+                <Link to={`./userlist/${who._id}`} className="editProfileButton">Link To profile</Link>
+                <button className="deleteButton" onClick={deleteComment}>Delete comment</button>
+            </div>
+            
+        </div>
+    )
+}
+const CommentToData=({commentDetails})=>{
+    //fix this bit
+    console.log(commentDetails)
+    const [who,setWho] = useState('')
+    const [buffer,setBuffer]= useState(true)
+    useEffect(()=>{
+        const getSenderData = async()=>{
+            try{
+                const token = window.localStorage.getItem('token')
+                const resp = await axios.get(`http://localhost:3001/api/userdata/${commentDetails.From}`,{headers:{'authorization':token,'content-type':'application/json'}})
+                console.log(resp)
+                setWho(resp.data)
+                setBuffer(false)
+            }catch(e){
+                console.log(e)
+            }
+            
+        }
+        getSenderData()
+    },[])
+    const deleteComment =async()=>{
+        setBuffer(true)
+        const token = window.localStorage.getItem('token')
+        const resp = await axios.delete('http://localhost:3001/api/userdata/comment',{headers:{'authorization':token,'content-type':'application/json'},data:{data:commentDetails}})
+        setBuffer(false)
+    }
+    if(buffer){
+        return(
+            <div>
+                Please Wait...
+            </div>
+        )
+    }
+    return(
+        <div className="dropDownStyling">
+            <p><span className="subtableContent">From:</span> {who.Name}</p>
+            <div>
+                <p><span className="subtableContent">Favorite Day:</span> {commentDetails.Day}</p>
+            </div>
+            <div>
+                <p><span className="subtableContent">One word to describe me:</span> {commentDetails.Describe}</p>
+            </div>
+            <div>
+                <p><span className="subtableContent">Favorite Quality about me:</span> {commentDetails.Quality}</p>
+            </div>
+            <div>
+                <p><span className="subtableContent">Favorite thing about me:</span> {commentDetails.Thing}</p>
+            </div>
+            <div className="ProfileAndDeleteStuff">
+                <Link to={`./userlist/${who._id}`} className="editProfileButton">Link To profile</Link>
+                <button className="deleteButton" onClick={deleteComment}>Delete comment</button>
+            </div>
+            
         </div>
     )
 }
 const DefaultHomePage=({userData})=>{
-    const greeting = greetingLogic()+' '+userData.Name
     console.log(userData)
+    const greeting = greetingLogic()+' '+userData.Name
+    const dropDownMenu=(id,swapTitle)=>{
+        document.getElementById(id).classList.toggle("hiddenDropDown")
+        document.getElementById(swapTitle).textContent=document.getElementById(swapTitle).textContent==="expand_more"?"expand_less":"expand_more"
+    }
     return(
-        <div>
-            <p>{greeting}</p>
+        <div className="UserHomePageContent">
+            <h2 className="Title">{greeting}</h2>
             <div>
-               <p>About yourself</p>
-               {/*Make it as a dropdown menu*/}
                 <div>
-                    <p>Username: {userData.Username}</p>
-                    <p>Roll No: {userData.RollNo}</p>
-                    <p>Bio: {userData.Bio}</p>
-                    <p>Phone: {userData.Phone}</p>
-                    <p>Email: {userData.Email}</p>
-                    <p>Department: {userData.Department}</p>
-                    <p>Hostel: {userData.HostelName}</p> 
+                    <h3 onClick={(e)=>{dropDownMenu("HomePageUserBioData","SpanTitleAboutMe")}} className="TitleDescriptionHomePage">About yourself <span class="material-symbols-outlined" id="SpanTitleAboutMe">expand_less</span></h3>
+                    <div id="HomePageUserBioData" className="dropDownStyling">
+                        <p><span className="subtableContent">Username:</span> {userData.Username}</p>
+                        <p><span className="subtableContent">Roll No:</span> {userData.RollNo}</p>
+                        <p><span className="subtableContent">Bio:</span> {userData.Bio}</p>
+                        <p><span className="subtableContent">Phone:</span> {userData.Phone}</p>
+                        <p><span className="subtableContent">Email:</span> {userData.Email}</p>
+                        <p><span className="subtableContent">Department:</span> {userData.Department}</p>
+                        <p><span className="subtableContent">Hostel:</span> {userData.HostelName}</p> 
+                    </div>
                 </div>
             </div>
             <div>
-                <p>Comments on my profile</p>
-                <div>
-                    {userData.CommentsToMe.length===0?<p>Users haven't left a comment on your profile</p>:userData.CommentsToMe.map(x=><CommentData commentDetails={x}/>)}
+                <h3 onClick={(e)=>{dropDownMenu("HomePageUserCommentsLeft","SpanTitleCommentsLeft")}} className="TitleDescriptionHomePage">Comments on my profile <span class="material-symbols-outlined" id="SpanTitleCommentsLeft">expand_less</span></h3>
+                <div id="HomePageUserCommentsLeft">
+                    {userData.CommentsToMe.length===0?<p>Users haven't left a comment on your profile</p>:userData.CommentsToMe.map(x=><CommentToData commentDetails={x}/>)}
                 </div>
             </div>
             <div>
-                <p>Comments you left</p>
-                <div>
-                {userData.CommentsByMe.length===0?<p>Leave a comment on a users profile to make this profile</p>:userData.CommentsByMe.map(x=><CommentData commentDetails={x}/>)}
+                <h3 onClick={(e)=>{dropDownMenu("HomePageUserCommentsReceived","SpanTitleCommentsReceived")}} className="TitleDescriptionHomePage">Comments you left <span class="material-symbols-outlined" id="SpanTitleCommentsReceived">expand_less</span></h3>
+                <div id="HomePageUserCommentsReceived" className="dropDownBigDiv">
+                    {userData.CommentsByMe.length===0?<p>Leave a comment on a users profile to make this profile</p>:userData.CommentsByMe.map(x=><CommentByData commentDetails={x}/>)}
                 </div>
             </div>
-            <Link to="./editPage">Edit Profile</Link>
+            <Link to="./editPage" className="editProfileButton">Edit Profile</Link>
         </div>
     )
 }

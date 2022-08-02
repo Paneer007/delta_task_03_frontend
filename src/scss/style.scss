@@ -4,12 +4,21 @@ $kombu-green: #283618ff;
 $cornsilk: #fefae0ff;
 $earth-yellow: #dda15eff;
 $liver-dogs: #bc6c25ff;
+$someShadeOfYellow: rgb(244, 231, 178);
+@keyframes colorSwitch {
+    from{
+        color: $cornsilk;
+        background-color: $kombu-green;
+    }
+    to{
+        color:$kombu-green;
+        background-color: $cornsilk;
+    }
+}
 #root{
     font-family: "Montserrat";
     height: auto;
-
 }
-
 body{
     margin: 0px;
     padding:0px;
@@ -26,25 +35,45 @@ html{
     height: 100vh;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     background-color: $earth-yellow;
 }
-.HomePageFirstHalf,.HomePageSecondHalf{
-    flex-basis: 50%;
-}
 .HomeCard{
+    height: 50vh;
+    width: 50vh;
     background-color: $cornsilk;
     border: 1px solid black;
-    box-shadow: 8px 12px black;
+    box-shadow: 8px 12px $kombu-green;
     padding: 0px 8px 8px 8px;
 }
 .MainTitle{
     font-weight: 800;
     font-size: larger;
+    padding-left: 16px;
 }
 .InputField{
     display: flex;
     flex-direction: row;
+    width: 90%;
+    input{
+        font-family: quicksand;
+        border-radius: 4px;
+        border-style: none;
+        width: 100%;
+        outline: none;
+        font-size: large;
+        padding: 8px;
+        margin: 2px;
+        box-shadow:2px 1px 1px rgba($color: #a2a2a2, $alpha: 1.0);
+    }
+}
+.inputItems{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 .homePageImageStyle{
     width: 100%;
@@ -58,16 +87,21 @@ html{
     flex-direction: row;
     gap: 10px;
 }
+.PCText{
+    text-decoration: none;
+    color:$kombu-green;
+    width: fit-content;
+    height: 25vh;
+}
 .ProfileCard{
-    background-color: $cornsilk;
+    width: 15vw;
+    height: 30vh;
+    background-color: $someShadeOfYellow;
     padding: 8px;
-    border: 2px solid black;
     border-radius: 8px;
+    box-shadow: 2px 1px 1px rgba($color: #a2a2a2, $alpha: 1.0);;
 }
-.ProfileCard :hover{
-    height: 25%;
-    width:20%;
-}
+
 .invisibleClass{
     visibility: hidden;
 }
@@ -86,4 +120,160 @@ html{
     input{
         background-color: $liver-dogs
     }
+}
+.SubmitOrChangeField{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    button{
+        font-family: quicksand;
+        border-radius: 4px;
+        border-style: none;
+        width: 90%;
+        outline: none;
+        font-size: large;
+        padding: 8px;
+        margin: 2px;
+        background-color: $kombu-green;
+        color: cornsilk;
+        box-shadow:2px 1px 1px rgba($color: #a2a2a2, $alpha: 1.0);
+    }
+    button:hover{
+        animation: 0.5s colorSwitch alternate both;
+    }
+}
+.userHomePageIdea{
+    display: flex;
+    flex-direction: row;
+    min-height: 100%;
+    height: auto;
+}
+.SideBar{
+    flex: 0 0 200px;
+    background-color: $earth-yellow;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap:25px;
+}
+.SideBarContent{
+    display: flex;
+    flex-direction: column;
+    margin: 80px 8px;
+    width: 80%;
+}
+.MainContentPage{
+    background-color: $cornsilk;
+    width: 100%;
+}
+.UserHomePageContent{
+    padding: 8px;
+}
+.hiddenDropDown{
+    display: none;
+}
+.dropDownStyling{
+    background-color: $someShadeOfYellow;
+    box-shadow: 4px 4px 2px rgba($color: #a2a2a2, $alpha: 1.0);
+    border-radius: 8px;
+    padding:1px 8px;
+}
+.TitleDescriptionHomePage{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap:8px
+}
+.editProfileButton{
+    text-decoration: none;
+    color: $cornsilk;
+    background-color: $kombu-green;
+    box-shadow:2px 2px 1px rgba($color: #a2a2a2, $alpha: 1.0);
+    padding: 8px;
+    border-radius: 16px;
+}
+.editProfileButton:hover{
+    background-color: $cornsilk;
+    color: $kombu-green;
+}
+.subtableContent{
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.ProfileAndDeleteStuff{
+    display: flex;
+    flex-direction: row;
+    gap:24px;
+    padding: 4px;
+}
+.deleteButton{
+    outline: none;
+    background-color:$cornsilk ;
+    border: red 1px solid;
+    color: red;
+    font-family: montserrat;
+    font-size: medium;
+    border-radius: 16px;
+}
+.deleteButton:hover{
+    color:$cornsilk;
+    background-color: red;
+}
+.dropDownBigDiv{
+    margin-bottom: 16px;
+}
+.SideBarElement{
+    text-align: center;
+    text-decoration: none;
+    font-family: quicksand;
+    border-radius: 16px;
+    border-style: none;
+    outline: none;
+    width: 100%;
+    font-size: large;
+    padding: 8px;
+    margin: 2px;
+    background-color: $kombu-green;
+    color: cornsilk;
+    box-shadow:2px 1px 1px rgba($color: #a2a2a2, $alpha: 1.0);
+}
+.UserSearchPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.SearchBarStyling{
+    font-size: large;
+    font-family: quicksand;
+    outline: none;
+    border:none;
+}
+.SearchBarDiv{
+    box-shadow:2px 1px 1px rgba($color: #a2a2a2, $alpha: 1.0);
+    padding:6px;
+    width: 90%;
+    display: flex;
+    margin:8px;
+    margin-top: 16px;
+    border-radius: 16px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+    gap:8px;
+    input{
+        width:100%
+    }
+}
+.ShowMoreText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

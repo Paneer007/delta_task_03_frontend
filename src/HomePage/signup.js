@@ -35,19 +35,23 @@ const SignupPage=()=>{
         <div className="MainCredentials">
             <div className="HomeCard">
                 <div className="MainTitle" id="Header">
-                    <p>Digi Slam book</p>
-                    <p>Rejoice and remember the best years of your life</p>
+                    <h2>Digi Slam book</h2>
+                    <div>
+                        <p>Sign up</p>
+                    </div>
                 </div>
-                <div>
-                    <p>Email:</p>
-                    <input onChange={(e)=>setEmail(e.target.value)}/>
+                <div className="inputItems">
+                    <div className="InputField">
+                        <input onChange={(e)=>setEmail(e.target.value)} placeholder="Email"/>
+                    </div>
+                    <div className="InputField">
+                        <input onChange={(e)=>setPassword(e.target.value)} placeholder="Password"/>
+                    </div>
                 </div>
-                <div>
-                    <p>Password</p>
-                    <input onChange={(e)=>setPassword(e.target.value)}/>
+                <div className="SubmitOrChangeField">
+                    <button onClick={sendCredentials}>Sign up</button>
+                    <p>Have an existing account?<span><Link to="/login">log in</Link></span></p>
                 </div>
-                <button onClick={sendCredentials}>Sign up</button>
-                <Link to="/login">Have an existing account? log in</Link>
             </div>
             
         </div>
