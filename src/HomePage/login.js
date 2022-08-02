@@ -13,7 +13,7 @@ const LoginPage=()=>{
             password:password
         }
         try{
-            const resp= await axios.post("http://localhost:3001/api/login",body)
+            const resp= await axios.post("/api/login",body)
             let token = resp.data.token
             window.localStorage.setItem('token','bearer '+token)
             navigate('../user')

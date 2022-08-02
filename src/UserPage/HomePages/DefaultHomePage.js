@@ -21,7 +21,7 @@ const CommentByData =({commentDetails})=>{
         const getSenderData = async()=>{
             try{
                 const token = window.localStorage.getItem('token')
-                const resp = await axios.get(`http://localhost:3001/api/userdata/${commentDetails.To}`,{headers:{'authorization':token,'content-type':'application/json'}})
+                const resp = await axios.get(`/api/userdata/${commentDetails.To}`,{headers:{'authorization':token,'content-type':'application/json'}})
                 setWho(resp.data)
                 setBuffer(false)
             }catch(e){
@@ -34,7 +34,7 @@ const CommentByData =({commentDetails})=>{
     const deleteComment =async()=>{
         setBuffer(true)
         const token = window.localStorage.getItem('token')
-        const resp = await axios.delete('http://localhost:3001/api/userdata/comment',{headers:{'authorization':token,'content-type':'application/json'},data:{data:commentDetails}})
+        const resp = await axios.delete('/api/userdata/comment',{headers:{'authorization':token,'content-type':'application/json'},data:{data:commentDetails}})
         setBuffer(false)
     }
     if(buffer){
@@ -76,7 +76,7 @@ const CommentToData=({commentDetails})=>{
         const getSenderData = async()=>{
             try{
                 const token = window.localStorage.getItem('token')
-                const resp = await axios.get(`http://localhost:3001/api/userdata/${commentDetails.From}`,{headers:{'authorization':token,'content-type':'application/json'}})
+                const resp = await axios.get(`/api/userdata/${commentDetails.From}`,{headers:{'authorization':token,'content-type':'application/json'}})
                 console.log(resp)
                 setWho(resp.data)
                 setBuffer(false)
@@ -90,7 +90,7 @@ const CommentToData=({commentDetails})=>{
     const deleteComment =async()=>{
         setBuffer(true)
         const token = window.localStorage.getItem('token')
-        const resp = await axios.delete('http://localhost:3001/api/userdata/comment',{headers:{'authorization':token,'content-type':'application/json'},data:{data:commentDetails}})
+        const resp = await axios.delete('/api/userdata/comment',{headers:{'authorization':token,'content-type':'application/json'},data:{data:commentDetails}})
         setBuffer(false)
     }
     if(buffer){

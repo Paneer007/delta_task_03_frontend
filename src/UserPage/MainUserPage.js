@@ -17,7 +17,7 @@ const MainUserPage = ()=>{
             if(token==null){
                 navigate('../unauthorisedAccess')
             }
-            const resp = await axios.get('http://localhost:3001/api/userdata',{headers:{
+            const resp = await axios.get('/api/userdata',{headers:{
                 'authorization':token,
                 'content-type':'application/json'
             }})
@@ -37,7 +37,7 @@ const MainUserPage = ()=>{
         const token = window.localStorage.getItem('token')
         setBuffer(true)
         const getUpdatedUserData =async()=>{
-            const resp = await axios.get('http://localhost:3001/api/userdata',{headers:{
+            const resp = await axios.get('/api/userdata',{headers:{
                 'authorization':token,
                 'content-type':'application/json'
             }})

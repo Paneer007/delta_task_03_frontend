@@ -12,7 +12,7 @@ const EditUserPage =({userData,setNewUserUpdated})=>{
         e.preventDefault()
         console.log('im here')
         let token = window.localStorage.getItem('token')
-        const resp = await axios.post("http://localhost:3001/api/userdata/updateprofile",inputs,{headers:{
+        const resp = await axios.post("/api/userdata/updateprofile",inputs,{headers:{
             'authorization':token,
             'content-type':'application/json'
         }})

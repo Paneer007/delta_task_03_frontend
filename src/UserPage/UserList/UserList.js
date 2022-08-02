@@ -38,7 +38,7 @@ const UserListPage=()=>{
         validateUserToken(navigate)
         const token = window.localStorage.getItem('token')
         const getListOfUsers=async()=>{
-            const resp = await axios.get('http://localhost:3001/api/userdata/allusers',{headers:{'authorization':token,'content-type':'application/json'}})
+            const resp = await axios.get('/api/userdata/allusers',{headers:{'authorization':token,'content-type':'application/json'}})
             setProfileList(resp.data)
             setBuffer(false)
         }

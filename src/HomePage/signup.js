@@ -14,7 +14,7 @@ const SignupPage=()=>{
         }
         setLoadingFlag(true)
         try{
-            const resp = await axios.post("http://localhost:3001/api/signup",body)  
+            const resp = await axios.post("/api/signup",body)  
             console.log(resp) 
             setLoadingFlag(false)
             navigate('/login')           
