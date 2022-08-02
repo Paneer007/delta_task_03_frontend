@@ -43,34 +43,23 @@ const UserDisplayPage = ()=>{
     }
     return(
         <div>
-            <div>
-                <p>
-                    {userData.Name}
-                </p>
-                <p>
-                    {userData.Username}
-
-                </p>
-                <p>
-                {userData.Phone}
-
-                </p>
-                <p>
-                {userData.Bio}
-
-                </p>
-                <p>
-                    {userData.Department}
-                </p>
+            <div className="UserHomePageContent">
+                <h2>About User</h2>
+                <div className="dropDownStyling">
+                    <p><span className="subtableContent">Name:</span> {userData.Name}</p>
+                    <p><span className="subtableContent">Username:</span> {userData.Username}</p>
+                    <p><span className="subtableContent">Phone number:</span> {userData.Phone}</p>
+                    <p><span className="subtableContent">Bio:</span> {userData.Bio}</p>
+                    <p><span className="subtableContent">Department:</span> {userData.Department}</p>
+                </div>
             </div>
             <div>
-                Leave a comment
+                <div>
+                    <button onClick={()=>commentPopUp()} className="LeaveACommentButton">Leave a comment on the user</button>
+                </div>
             </div>
-            <div>
-                <button onClick={()=>commentPopUp()}>Leave a comment on the user</button>
-            </div>
+            
             <div className="popup invisibleClass" id="addComment">
-                <p onClick={()=>commentPopUp()}>X</p>
                 <form onSubmit={sendUserData}>
                     <div className="inputBox">
                         <p>Describe me in one word</p>
@@ -88,7 +77,10 @@ const UserDisplayPage = ()=>{
                         <p>If you could steal one thing from me, what would it be</p>
                         <input name="Thing" value={userComment.Thing||''} onChange={updateInputs} required/>
                     </div>
-                    <button type="submit">Submit</button>
+                    <div className="finalButton">
+                        <button type="submit" className="submitButton">Submit</button>
+                        <button onClick={()=>commentPopUp()} className="cancelButton">Cancel</button>
+                    </div>
                 </form> 
             </div>
         </div>

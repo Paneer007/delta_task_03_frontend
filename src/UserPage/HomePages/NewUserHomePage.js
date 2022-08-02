@@ -26,49 +26,44 @@ const NewUserHomePage=({userData,setNewUserUpdated})=>{
         }
     },[])
     return(
-        <div>
-            <form onSubmit={sendInformation}>
-                <div>
-                    <p>New User</p>
-                </div>
-                <div>
+        <div className="UserHomePageContent">
+            <div>
+                <h2>New User</h2>
+            </div>
+            <form onSubmit={sendInformation} className="dropDownStyling">
+                <div className="TakeUserInformation">
                     <p>Enter Name: </p>
                     <input name="Name" value={inputs.Name||''} onChange={updateInputs} required/>
                 </div>
-                <div>
+                <div className="TakeUserInformation">
                     <p>Enter Username: </p>
                     <input name="Username" value={inputs.Username||''} onChange={updateInputs} required/>
                     
                 </div>
-                <div>
+                <div className="TakeUserInformation">
                     <p>Enter RollNo: </p>
                     <input name="RollNo" value={inputs.RollNo||''} onChange={updateInputs} required/>
                     
                 </div>
-                <div>
+                <div className="TakeUserInformation">
                     <p>Enter Bio: </p>
                     <input name="Bio" value={inputs.Bio||''} onChange={updateInputs} required/>
                     
                 </div>
-                <div>
+                <div className="TakeUserInformation">
                     <p>Enter Phone Number: </p>
                     <input name="Phone" value={inputs.Phone||''} onChange={updateInputs} required/>
-                    
                 </div>
-                <div>
+                <div className="TakeUserInformation">
                     <p>Enter Department: </p>
                     <input name="Department" value={inputs.Department||''} onChange={updateInputs} required/>
-                    
                 </div>
-                <div>
+                <div className="TakeUserInformation">
                     <p>Enter Hostel: </p>
                     <input name="HostelName" value={inputs.HostelName||''} onChange={updateInputs} required/>
                 </div>
                 <div>
-                    <p>Enter Image: </p>
-                </div>
-                <div>
-                    <button type="submit">Submit information</button>
+                    <button type="submit" className="submitButton gapForEdit">Submit information</button>
                 </div>
             </form>
         </div>

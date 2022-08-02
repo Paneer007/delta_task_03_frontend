@@ -19,7 +19,7 @@ const SignupPage=()=>{
             setLoadingFlag(false)
             navigate('/login')           
         }catch(error){
-            navigate('/error')
+            alert("Enter a valid username and password")
         }
  
     }

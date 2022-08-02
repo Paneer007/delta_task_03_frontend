@@ -106,19 +106,31 @@ html{
     visibility: hidden;
 }
 .popup{
-    background-color: antiquewhite;
+    padding:8px;
+    background-color:rgb(255, 235, 153);
     position: absolute;
     left: 50%;
     top:50%;
     transform: translate(-50%,-50%);
+    border-radius: 16px;
+    box-shadow: 4px 2px 2px rgba($color: #a2a2a2, $alpha: 1.0);;
 }
 .inputBox{
     display: flex;
     flex-direction:row;
     justify-content: center;
     align-items: center;
+    font-family: Quicksand;
+    font-weight: 600;
+    gap: 16px;
+    font-size: large;
     input{
-        background-color: $liver-dogs
+        background-color: $cornsilk;
+        border:none;
+        outline:none;
+        border-radius: 12px;
+        padding:4px;
+        font-weight: 300;
     }
 }
 .SubmitOrChangeField{
@@ -189,7 +201,7 @@ html{
     align-items: center;
     gap:8px
 }
-.editProfileButton{
+.editProfileButton,.ReturnHome{
     text-decoration: none;
     color: $cornsilk;
     background-color: $kombu-green;
@@ -197,7 +209,10 @@ html{
     padding: 8px;
     border-radius: 16px;
 }
-.editProfileButton:hover{
+.ReturnHome{
+    width: fit-content;
+}
+.editProfileButton:hover,.ReturnHome:hover{
     background-color: $cornsilk;
     color: $kombu-green;
 }
@@ -211,7 +226,23 @@ html{
     gap:24px;
     padding: 4px;
 }
-.deleteButton{
+.submitButton{
+    outline: none;
+    background-color:$kombu-green ;
+    border: $kombu-green 1px solid;
+    color: $cornsilk;
+    font-family: montserrat;
+    font-size: medium;
+    border-radius: 16px;
+}
+.gapForEdit{
+    margin: 4px 0px;
+}
+.submitButton:hover{
+    color:$kombu-green;
+    background-color: $cornsilk;
+}
+.deleteButton,.cancelButton{
     outline: none;
     background-color:$cornsilk ;
     border: red 1px solid;
@@ -220,7 +251,7 @@ html{
     font-size: medium;
     border-radius: 16px;
 }
-.deleteButton:hover{
+.deleteButton:hover,.cancelButton:hover{
     color:$cornsilk;
     background-color: red;
 }
@@ -276,4 +307,65 @@ html{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.LeaveACommentButton{
+    outline:none;
+    background-color: $kombu-green;
+    border: none;
+    color:$cornsilk;
+    font-family: Quicksand;
+    font-size: large;
+    padding:8px;
+    margin: 8px;
+    border-radius: 16px;
+    border: 2px solid $kombu-green;
+}
+.submitButton,.cancelButton{
+    padding: 5px;
+}
+.LeaveACommentButton:hover{
+    border:2px solid $kombu-green;
+    color:$kombu-green;
+    background-color: $cornsilk;
+}
+.inputBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.finalButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap:8px;
+}
+.TakeUserInformation{
+    font-family: Quicksand;
+    font-size: large;
+    p{
+        font-weight: 600;
+        margin: 6px;
+    }
+    input{
+        margin: 0px 4px;
+        border-radius: 4px;
+        width: 50%;
+        border: 0px;
+        padding: 2px;
+        font-family: Quicksand;
+        font-weight: 500;
+    }
+}
+.ErrorPage{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: $cornsilk;
+    font-family: montserrat;
+    font-size: large;
+    p,h2,a{
+        margin: 12px 8px;
+    }
+    
 }

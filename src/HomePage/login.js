@@ -12,10 +12,15 @@ const LoginPage=()=>{
             email:email,
             password:password
         }
-        const resp= await axios.post("http://localhost:3001/api/login",body)
-        let token = resp.data.token
-        window.localStorage.setItem('token','bearer '+token)
-        navigate('../user')
+        try{
+            const resp= await axios.post("http://localhost:3001/api/login",body)
+            let token = resp.data.token
+            window.localStorage.setItem('token','bearer '+token)
+            navigate('../user')
+        }catch(e){
+            alert("Enter Valid user credentials")
+        }
+        
     } 
     return(
         <div className="MainCredentials">
