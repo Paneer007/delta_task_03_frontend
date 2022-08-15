@@ -1,7 +1,6 @@
 import { useState } from "react"
 import {Link,useNavigate} from "react-router-dom"
 import axios from "axios"
-import HomePageImage from "../Images/HomePageImage.jpeg"
 const LoginPage=()=>{
     const [email,setEmail] = useState('')
     const [password,setPassword]=useState('')
@@ -13,7 +12,7 @@ const LoginPage=()=>{
             password:password
         }
         try{
-            const resp= await axios.post("/api/login",body)
+            const resp= await axios.post("http://localhost:3001/api/login",body)
             let token = resp.data.token
             window.localStorage.setItem('token','bearer '+token)
             navigate('../user')

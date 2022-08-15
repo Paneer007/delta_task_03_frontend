@@ -15,7 +15,6 @@ const UserProfileCard = ({profile})=>{
         </Link>
         )
     }
-    {/* Click the profile to know more about a person, try making it a like a pop up display or something :> */}
     return(
         <Link className="PCText" to={`./${profile._id}`} onMouseOver={()=>setShow(true)} onMouseOut={()=>setShow(false)}>
             <div className="ProfileCard">
@@ -38,12 +37,13 @@ const UserListPage=()=>{
         validateUserToken(navigate)
         const token = window.localStorage.getItem('token')
         const getListOfUsers=async()=>{
-            const resp = await axios.get('/api/userdata/allusers',{headers:{'authorization':token,'content-type':'application/json'}})
+            const resp = await axios.get('http://localhost:3001/api/userdata/allusers',{headers:{'authorization':token,'content-type':'application/json'}})
             setProfileList(resp.data)
             setBuffer(false)
         }
         getListOfUsers()
     },[])
+    console.log(profileList)
     const finalList = profileList.filter(x=>x._doc.Name.includes(search))
     if(buffer){
         return(

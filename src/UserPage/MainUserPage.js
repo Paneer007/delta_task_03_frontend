@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect,useState } from "react"
-import { Navigate,Routes,Route,useNavigate, Link } from "react-router-dom"
+import {Routes,Route,useNavigate, Link } from "react-router-dom"
 import DefaultHomePage from "./HomePages/DefaultHomePage"
 import NewUserHomePage from "./HomePages/NewUserHomePage"
 import UserListPage from "./UserList/UserList"
@@ -11,13 +11,14 @@ const MainUserPage = ()=>{
     const [userData, setUserData] = useState()
     const [buffer,setBuffer] = useState(true)
     const [newUserUpdated, setNewUserUpdated]= useState(false)
+    const [fix,setFix] = useState(0)
     useEffect(()=>{
         const getUserData=async()=>{
             const token = window.localStorage.getItem('token')
             if(token==null){
                 navigate('../unauthorisedAccess')
             }
-            const resp = await axios.get('/api/userdata',{headers:{
+            const resp = await axios.get('http://localhost:3001/api/userdata',{headers:{
                 'authorization':token,
                 'content-type':'application/json'
             }})
@@ -37,7 +38,7 @@ const MainUserPage = ()=>{
         const token = window.localStorage.getItem('token')
         setBuffer(true)
         const getUpdatedUserData =async()=>{
-            const resp = await axios.get('/api/userdata',{headers:{
+            const resp = await axios.get('http://localhost:3001/api/userdata',{headers:{
                 'authorization':token,
                 'content-type':'application/json'
             }})
@@ -66,10 +67,10 @@ const MainUserPage = ()=>{
             </div>
             <div className="MainContentPage">
                 <Routes>
-                    <Route path="/" element={<DefaultHomePage userData={userData}/>}/>
+                    <Route path="/" element={<DefaultHomePage userData={userData} setNewUserUpdated={setNewUserUpdated}/>}/>
                     <Route path="/newuser" element={<NewUserHomePage userData={userData} setNewUserUpdated={setNewUserUpdated}/>}/>
                     <Route path="/userlist" element ={<UserListPage/>}/>
-                    <Route path="/userlist/:userId" element ={<UserDisplayPage/>}/>
+                    <Route path="/userlist/:userId" element ={<UserDisplayPage setNewUserUpdated={setNewUserUpdated} />}/>
                     <Route path="/editPage" element ={<EditUserPage userData={userData} setNewUserUpdated={setNewUserUpdated}/>}/>
                 </Routes>
             </div>

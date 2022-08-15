@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import validateUserToken from "../../utils/tokenHelper"
-const UserDisplayPage = ()=>{
+const UserDisplayPage = ({setNewUserUpdated})=>{
     const updateInputs =(e)=>{
         setUserComment(prevState=>({...prevState,[e.target.name]:e.target.value}))
     }
@@ -17,7 +17,7 @@ const UserDisplayPage = ()=>{
     useEffect(()=>{
         const getUserData = async()=>{
             const token = window.localStorage.getItem('token')
-            const resp = await axios.get(`/api/userdata/${userId}`,{headers:{'authorization':token,'content-type':'application/json'}})
+            const resp = await axios.get(`http://localhost:3001/api/userdata/${userId}`,{headers:{'authorization':token,'content-type':'application/json'}})
             console.log(resp.data)
             setBuffer(false)
             setUserData(resp.data)
@@ -30,8 +30,9 @@ const UserDisplayPage = ()=>{
         const token = window.localStorage.getItem('token')
         const body ={userId:userId, userComment:userComment}
         setBuffer(true)
-        const resp = await axios.post("/api/userdata/postcomment",body,{headers:{'authorization':token,'content-type':'application/json'}})
+        const resp = await axios.post("http://localhost:3001/api/userdata/postcomment",body,{headers:{'authorization':token,'content-type':'application/json'}})
         setBuffer(false)
+        setNewUserUpdated(true)
         commentPopUp()
     }
     if(buffer){
